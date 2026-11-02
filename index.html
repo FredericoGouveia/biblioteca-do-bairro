@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Biblioteca do Bairro</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lora:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header class="cabecalho">
+        <h1><a href="#topo">Biblioteca do Bairro</a></h1>
+        <nav aria-label="Menu principal">
+            <ul>
+                <li><a href="#topo">Início</a></li>
+                <li><a href="#catalogo">Catálogo</a></li>
+                <li><a href="#eventos">Eventos</a></li>
+                <li><a href="#sobre">Sobre</a></li>
+                <li><a href="#contactos">Contactos</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main id="topo">
+        <section class="topo">
+            <p class="etiqueta">Novidade</p>
+            <h2>Clube de leitura às quintas</h2>
+            <p class="destaque">Livros, eventos e leitura para todos, desde 1987.</p>
+            <p>Todas as quintas-feiras, às 18h30, conversamos sobre o livro do mês. A entrada é livre e há chá para todos.</p>
+            <a class="botao" href="#eventos">Inscrever-me</a>
+        </section>
+
+        <p class="faixa aviso">Feira do Livro · 13 a 15 de novembro</p>
+
+        <section id="servicos" class="servicos">
+            <h2>Serviços</h2>
+            <h3>Empréstimo de livros</h3>
+            <p>Leve até cinco livros durante 21 dias. A renovação pode ser feita online ou ao balcão.</p>
+            <h3>Sala de estudo</h3>
+            <p>Espaço silencioso com mesas individuais, tomadas e acesso Wi-Fi gratuito.</p>
+            <h3>Atendimento ao público</h3>
+            <p>A equipa ajuda a encontrar livros, a pesquisar no catálogo e a tratar dos empréstimos.</p>
+            <h3>Eventos culturais</h3>
+            <p>Hora do conto, oficinas de escrita, clubes de leitura e apresentações de livros.</p>
+        </section>
+
+        <section id="eventos" class="eventos">
+            <h2>Eventos</h2>
+            <ul class="lista-eventos">
+                <li>Hora do conto — Sábado, 10h30 · Sala infantil</li>
+                <li>Oficina de escrita — Quarta, 18h00 · Sala 2</li>
+                <li>Clube de leitura — Quinta, 18h30 · Sala principal</li>
+            </ul>
+
+            <div class="cartoes">
+                <article class="cartao">
+                    <p class="etiqueta">Infantil</p>
+                    <h3>Hora do conto</h3>
+                    <p>Sábado, 10h30 · Sala infantil</p>
+                </article>
+                <article class="cartao">
+                    <p class="etiqueta">Oficina</p>
+                    <h3>Oficina de escrita</h3>
+                    <p>Quarta, 18h00 · Sala 2</p>
+                </article>
+                <article class="cartao">
+                    <p class="etiqueta">Leitura</p>
+                    <h3>Clube de leitura</h3>
+                    <p>Quinta, 18h30 · Sala principal</p>
+                </article>
+            </div>
+        </section>
+
+        <section id="catalogo" class="catalogo">
+            <h2>Catálogo</h2>
+            <div class="grelha-catalogo">
+                <article class="cartao livro destaque">
+                    <p class="etiqueta">Destaque do mês</p>
+                    <h3>O Principezinho</h3>
+                    <p>Antoine de Saint-Exupéry</p>
+                </article>
+                <article class="cartao livro">
+                    <h3>Ensaio sobre a Cegueira</h3>
+                    <p>José Saramago</p>
+                </article>
+                <article class="cartao livro">
+                    <h3>Os Maias</h3>
+                    <p>Eça de Queirós</p>
+                </article>
+                <article class="cartao livro">
+                    <h3>Mensagem</h3>
+                    <p>Fernando Pessoa</p>
+                </article>
+                <article class="cartao livro">
+                    <h3>A Cidade e as Serras</h3>
+                    <p>Eça de Queirós</p>
+                </article>
+            </div>
+        </section>
+
+        <section id="sobre" class="sobre">
+            <h2>Sobre nós</h2>
+            <p>A Biblioteca do Bairro nasceu em 1987 e é hoje um ponto de encontro para leitores de todas as idades. Temos mais de 20 mil títulos, jornais, revistas e um espaço dedicado aos mais novos.</p>
+        </section>
+    </main>
+
+    <aside class="lateral" aria-labelledby="titulo-horario">
+        <h2 id="titulo-horario">Horário</h2>
+        <ul>
+            <li>Segunda a sexta: 9h00 – 19h00</li>
+            <li>Sábado: 10h00 – 17h00</li>
+            <li>Domingo e feriados: fechado</li>
+        </ul>
+        <p class="etiqueta">Época de exames</p>
+        <p>De 2 a 20 de dezembro a sala de estudo abre às 8h00.</p>
+    </aside>
+
+    <footer id="contactos" class="rodape">
+        <div>
+            <h3>Morada</h3>
+            <p>Rua das Flores, 12<br>1200-192 Lisboa</p>
+        </div>
+        <div>
+            <h3>Horário</h3>
+            <p>Seg–Sex: 9h00 – 19h00<br>Sábado: 10h00 – 17h00</p>
+        </div>
+        <div>
+            <h3>Contactos</h3>
+            <p>
+                <a href="mailto:geral@bibliotecadobairro.pt">geral@bibliotecadobairro.pt</a><br>
+                <a href="tel:+351210000000">210 000 000</a>
+            </p>
+        </div>
+    </footer>
+</body>
+</html>
