@@ -10,6 +10,19 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <script>
+        (function () {
+            var guardado = null;
+            try {
+                guardado = localStorage.getItem("tema");
+            } catch (e) {}
+
+            var escuro = guardado === "escuro" ||
+                (!guardado && window.matchMedia("(prefers-color-scheme: dark)").matches);
+            if (escuro) document.body.classList.add("tema-escuro");
+        })();
+    </script>
+
     <header class="cabecalho">
         <h1><a href="#topo">Biblioteca do Bairro</a></h1>
         <nav aria-label="Menu principal">
@@ -21,6 +34,7 @@
                 <li><a href="#contactos">Contactos</a></li>
             </ul>
         </nav>
+        <button type="button" class="botao-tema" id="botao-tema" aria-pressed="false">Modo escuro</button>
     </header>
 
     <main id="topo">
@@ -134,5 +148,29 @@
             </p>
         </div>
     </footer>
+
+    <script>
+        (function () {
+            var botao = document.getElementById("botao-tema");
+
+            function aplicar(escuro) {
+                document.body.classList.toggle("tema-escuro", escuro);
+                botao.textContent = escuro ? "Modo claro" : "Modo escuro";
+                botao.setAttribute("aria-pressed", String(escuro));
+                botao.setAttribute("aria-label", escuro ? "Ativar modo claro" : "Ativar modo escuro");
+            }
+
+            var escuro = document.body.classList.contains("tema-escuro");
+            aplicar(escuro);
+
+            botao.addEventListener("click", function () {
+                escuro = !escuro;
+                try {
+                    localStorage.setItem("tema", escuro ? "escuro" : "claro");
+                } catch (e) {}
+                aplicar(escuro);
+            });
+        })();
+    </script>
 </body>
 </html>

@@ -33,6 +33,24 @@ body.tema-escuro {
   --sombra-forte: 0 12px 24px rgb(0 0 0 / 0.45);
 }
 
+/* Cabeçalho e rodapé mantêm fundo escuro no tema escuro */
+body.tema-escuro .cabecalho,
+body.tema-escuro .rodape {
+  background: var(--cor-superficie);
+}
+
+body.tema-escuro .cabecalho h1 a,
+body.tema-escuro nav a,
+body.tema-escuro .rodape,
+body.tema-escuro .rodape h3 {
+  color: var(--cor-texto);
+}
+
+body.tema-escuro .cabecalho h1 a:hover,
+body.tema-escuro nav a:hover {
+  color: var(--cor-destaque-claro);
+}
+
 /* 2. Base
    ------------------------------------------------------------ */
 * {
@@ -231,6 +249,39 @@ section {
 
 .botao:active {
   transform: translateY(2px);
+}
+
+.botao-tema {
+  padding: 0.45rem 1rem;
+  font: inherit;
+  font-size: 0.875rem;
+  font-weight: bold;
+  color: var(--cor-clara);
+  background: transparent;
+  border: 2px solid var(--cor-clara);
+  border-radius: 999px;
+  cursor: pointer;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.botao-tema:hover {
+  color: var(--cor-principal);
+  background: var(--cor-clara);
+}
+
+.botao-tema:focus-visible {
+  outline: 3px solid var(--cor-destaque-claro);
+  outline-offset: 3px;
+}
+
+body.tema-escuro .botao-tema {
+  color: var(--cor-texto);
+  border-color: var(--cor-texto);
+}
+
+body.tema-escuro .botao-tema:hover {
+  color: var(--cor-superficie);
+  background: var(--cor-texto);
 }
 
 .lista-eventos {
