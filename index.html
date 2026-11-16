@@ -86,33 +86,32 @@
                     <p>Quinta, 18h30 · Sala principal</p>
                 </article>
             </div>
+
+            <form id="inscricao" class="formulario" novalidate>
+                <h3>Inscrever-me no clube de leitura</h3>
+
+                <label for="nome">Nome</label>
+                <input type="text" id="nome" name="nome" autocomplete="name">
+
+                <label for="email">E-mail</label>
+                <input type="email" id="email" name="email" autocomplete="email">
+
+                <button type="submit" class="botao">Inscrever-me</button>
+
+                <p id="mensagem" class="mensagem" role="status" aria-live="polite"></p>
+            </form>
         </section>
 
         <section id="catalogo" class="catalogo">
-            <h2>Catálogo</h2>
-            <div class="grelha-catalogo">
-                <article class="cartao livro destaque">
-                    <p class="etiqueta">Destaque do mês</p>
-                    <h3>O Principezinho</h3>
-                    <p>Antoine de Saint-Exupéry</p>
-                </article>
-                <article class="cartao livro">
-                    <h3>Ensaio sobre a Cegueira</h3>
-                    <p>José Saramago</p>
-                </article>
-                <article class="cartao livro">
-                    <h3>Os Maias</h3>
-                    <p>Eça de Queirós</p>
-                </article>
-                <article class="cartao livro">
-                    <h3>Mensagem</h3>
-                    <p>Fernando Pessoa</p>
-                </article>
-                <article class="cartao livro">
-                    <h3>A Cidade e as Serras</h3>
-                    <p>Eça de Queirós</p>
-                </article>
+            <h2>Catálogo <span id="resumo-catalogo" class="resumo"></span></h2>
+
+            <div class="filtros">
+                <label for="pesquisa" class="visualmente-oculto">Pesquisar por título</label>
+                <input type="search" id="pesquisa" placeholder="Pesquisar por título" autocomplete="off">
+                <button type="button" id="botao-disponiveis" class="botao-filtro" aria-pressed="false">Só disponíveis</button>
             </div>
+
+            <ul id="lista-livros" class="grelha-catalogo"></ul>
         </section>
 
         <section id="sobre" class="sobre">

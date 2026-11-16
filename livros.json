@@ -1,0 +1,8 @@
+[
+    { "titulo": "Os Maias", "autor": "Eça de Queirós", "ano": 1888, "disponivel": true },
+    { "titulo": "Mensagem", "autor": "Fernando Pessoa", "ano": 1934, "disponivel": false },
+    { "titulo": "A Sibila", "autor": "Agustina Bessa-Luís", "ano": 1954, "disponivel": true },
+    { "titulo": "Aparição", "autor": "Vergílio Ferreira", "ano": 1959, "disponivel": true },
+    { "titulo": "Memorial do Convento", "autor": "José Saramago", "ano": 1982, "disponivel": false },
+    { "titulo": "Ensaio sobre a Cegueira", "autor": "José Saramago", "ano": 1995, "disponivel": true }
+]
