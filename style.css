@@ -57,6 +57,11 @@ body.tema-escuro nav a:hover {
   box-sizing: border-box;
 }
 
+/* hidden ganha sempre: evita mostrar o que o JS esconde */
+[hidden] {
+  display: none !important;
+}
+
 body {
   margin: 0;
   font-family: Arial, Helvetica, sans-serif;
@@ -338,10 +343,13 @@ body.tema-escuro .botao-tema:hover {
 @media (min-width: 768px) {
   .cabecalho {
     flex-direction: row;
+    flex-wrap: wrap;
   }
 
   .cabecalho ul {
     flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
     gap: 1.5rem;
   }
 
@@ -365,9 +373,14 @@ body.tema-escuro .botao-tema:hover {
     display: grid;
     grid-template-columns: minmax(0, 1fr) 300px;
     grid-template-areas:
+      "aviso    aviso"
       "topo     topo"
       "conteudo lateral"
       "rodape   rodape";
+  }
+
+  .faixa-aviso {
+    grid-area: aviso;
   }
 
   .cabecalho {
@@ -568,4 +581,185 @@ body.tema-escuro .botao-tema:hover {
   overflow: hidden;
   clip-path: inset(50%);
   white-space: nowrap;
+}
+
+/* 8. O que fica guardado: aviso, listas, pesquisas
+   ------------------------------------------------------------ */
+.faixa-aviso {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  padding: 0.7rem 1.5rem;
+  font-size: 0.95rem;
+  font-weight: bold;
+  color: var(--cor-clara);
+  background: var(--cor-destaque-escuro);
+}
+
+.faixa-aviso p {
+  margin: 0;
+}
+
+.fechar-aviso {
+  padding: 0 0.55rem;
+  font: inherit;
+  font-size: 1.25rem;
+  line-height: 1.2;
+  color: inherit;
+  background: transparent;
+  border: 2px solid currentColor;
+  border-radius: 999px;
+  cursor: pointer;
+}
+
+.fechar-aviso:hover {
+  background: rgb(255 255 255 / 0.15);
+}
+
+.fechar-aviso:focus-visible {
+  outline: 3px solid var(--cor-destaque-claro);
+  outline-offset: 2px;
+}
+
+.controlos-tema {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.lista-leitura {
+  display: grid;
+  gap: 0.5rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.item-leitura {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  padding: 0.75rem 1rem;
+  background: var(--cor-superficie);
+  border: 1px solid var(--cor-borda);
+  border-left: 4px solid var(--cor-destaque);
+  border-radius: 8px;
+}
+
+.item-leitura.lido {
+  border-left-color: #2F7A5C;
+  opacity: 0.7;
+}
+
+.item-leitura.lido .titulo-leitura {
+  text-decoration: line-through;
+}
+
+.titulo-leitura {
+  font-weight: bold;
+}
+
+.acoes-lista {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+}
+
+.acoes-lista button {
+  padding: 0.3rem 0.7rem;
+  font: inherit;
+  font-size: 0.8rem;
+  font-weight: bold;
+  color: var(--cor-principal);
+  background: transparent;
+  border: 2px solid var(--cor-borda);
+  border-radius: 999px;
+  cursor: pointer;
+}
+
+.acoes-lista button:hover:not(:disabled) {
+  color: var(--cor-destaque);
+  border-color: var(--cor-destaque);
+}
+
+.acoes-lista button:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+}
+
+.ultimas {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem;
+  margin: -0.5rem 0 1.5rem;
+  font-size: 0.9rem;
+}
+
+.ultimas-titulo {
+  font-weight: bold;
+  color: var(--cor-principal);
+}
+
+.ultimas button {
+  padding: 0.25rem 0.75rem;
+  font: inherit;
+  font-size: 0.85rem;
+  color: var(--cor-texto);
+  background: var(--cor-superficie);
+  border: 1px solid var(--cor-borda);
+  border-radius: 999px;
+  cursor: pointer;
+}
+
+.ultimas button:hover {
+  color: var(--cor-destaque);
+  border-color: var(--cor-destaque);
+}
+
+.ultimas .limpar-pesquisas {
+  border-style: dashed;
+}
+
+.vazio {
+  font-style: italic;
+  opacity: 0.75;
+}
+
+.saudacao {
+  margin-bottom: 0.25rem;
+  font-weight: bold;
+  color: var(--cor-destaque);
+}
+
+.cartao-leitor {
+  margin-bottom: 0.75rem;
+  font-size: 0.85rem;
+}
+
+.lista-generos {
+  margin: 0;
+  padding-left: 1.1rem;
+  font-size: 0.95rem;
+}
+
+.botao-mini {
+  padding: 0.3rem 0.9rem;
+  font: inherit;
+  font-size: 0.8rem;
+  font-weight: bold;
+  color: var(--cor-destaque-claro);
+  background: transparent;
+  border: 2px solid var(--cor-destaque-claro);
+  border-radius: 999px;
+  cursor: pointer;
+}
+
+.botao-mini:hover {
+  color: var(--cor-principal);
+  background: var(--cor-destaque-claro);
 }

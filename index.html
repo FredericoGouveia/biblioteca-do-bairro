@@ -11,11 +11,12 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <!-- tema antes de pintar, para não haver flash de página clara -->
     <script>
         (function () {
             var guardado = null;
             try {
-                guardado = localStorage.getItem("tema");
+                guardado = localStorage.getItem("biblioteca:tema");
             } catch (e) {}
 
             var escuro = guardado === "escuro" ||
@@ -24,18 +25,27 @@
         })();
     </script>
 
+    <div id="faixa-aviso" class="faixa-aviso" hidden>
+        <p>Hoje a biblioteca fecha às 13h.</p>
+        <button type="button" id="fechar-aviso" class="fechar-aviso" aria-label="Fechar aviso">×</button>
+    </div>
+
     <header class="cabecalho">
         <h1><a href="#topo">Biblioteca do Bairro BUBUBU</a></h1>
         <nav aria-label="Menu principal">
             <ul>
                 <li><a href="#topo">Início</a></li>
                 <li><a href="#catalogo">Catálogo</a></li>
+                <li><a href="#leitura">Lista de leitura</a></li>
                 <li><a href="#eventos">Eventos</a></li>
                 <li><a href="#sobre">Sobre</a></li>
                 <li><a href="#contactos">Contactos</a></li>
             </ul>
         </nav>
-        <button type="button" class="botao-tema" id="botao-tema" aria-pressed="false">Modo escuro</button>
+        <div class="controlos-tema">
+            <button type="button" class="botao-tema" id="botao-tema" aria-pressed="false">Modo escuro</button>
+            <button type="button" class="botao-tema" id="botao-sistema" aria-pressed="false">Seguir o sistema</button>
+        </div>
     </header>
 
     <main id="topo">
@@ -111,7 +121,17 @@
                 <button type="button" id="botao-disponiveis" class="botao-filtro" aria-pressed="false">Só disponíveis</button>
             </div>
 
+            <div id="ultimas-pesquisas" class="ultimas" hidden></div>
+
             <ul id="lista-livros" class="grelha-catalogo"></ul>
+        </section>
+
+        <section id="leitura" class="leitura">
+            <h2>A minha lista de leitura <span id="resumo-leitura" class="resumo"></span></h2>
+
+            <p id="leitura-vazia" class="vazio">Ainda não guardaste nenhum livro. Usa ☆ Guardar no catálogo.</p>
+
+            <ul id="lista-leitura" class="lista-leitura"></ul>
         </section>
 
         <section id="sobre" class="sobre">
@@ -129,6 +149,11 @@
         </ul>
         <p class="etiqueta">Época de exames</p>
         <p>De 2 a 20 de dezembro a sala de estudo abre às 8h00.</p>
+
+        <h2 id="titulo-leitor">Ficha de leitor</h2>
+        <p id="saudacao-leitor" class="saudacao">Olá, visitante</p>
+        <p id="cartao-leitor" class="cartao-leitor"></p>
+        <ul id="generos-leitor" class="lista-generos"></ul>
     </aside>
 
     <footer id="contactos" class="rodape">
@@ -147,30 +172,11 @@
                 <a href="tel:+351210000000">210 000 000</a>
             </p>
         </div>
+        <div>
+            <h3>Visitas</h3>
+            <p id="contador-visitas"></p>
+            <button type="button" id="recomecar-visitas" class="botao-mini" hidden>Recomeçar</button>
+        </div>
     </footer>
-
-    <script>
-        (function () {
-            var botao = document.getElementById("botao-tema");
-
-            function aplicar(escuro) {
-                document.body.classList.toggle("tema-escuro", escuro);
-                botao.textContent = escuro ? "Modo claro" : "Modo escuro";
-                botao.setAttribute("aria-pressed", String(escuro));
-                botao.setAttribute("aria-label", escuro ? "Ativar modo claro" : "Ativar modo escuro");
-            }
-
-            var escuro = document.body.classList.contains("tema-escuro");
-            aplicar(escuro);
-
-            botao.addEventListener("click", function () {
-                escuro = !escuro;
-                try {
-                    localStorage.setItem("tema", escuro ? "escuro" : "claro");
-                } catch (e) {}
-                aplicar(escuro);
-            });
-        })();
-    </script>
 </body>
 </html>
