@@ -193,7 +193,7 @@ function atualizar() {
     if (resultado.length === 0) {
         lista.replaceChildren();
         lista.textContent = "Nenhum livro encontrado.";
-        resumo.textContent = "";
+        resumo.textContent = "0 livros encontrados";
         return;
     }
 
@@ -210,6 +210,13 @@ pesquisa.addEventListener("input", () => {
     temporizadorPesquisa = setTimeout(() => registarPesquisa(pesquisa.value), 800);
 });
 
+// Escape limpa a pesquisa e volta a mostrar o catálogo todo
+pesquisa.addEventListener("keydown", (evento) => {
+    if (evento.key !== "Escape") return;
+    pesquisa.value = "";
+    atualizar();
+});
+
 botaoDisponiveis.addEventListener("click", () => {
     soDisponiveis = !soDisponiveis;
     botaoDisponiveis.setAttribute("aria-pressed", String(soDisponiveis));
@@ -221,11 +228,13 @@ botaoDisponiveis.addEventListener("click", () => {
 const listaLeitura = document.querySelector("#lista-leitura");
 const resumoLeitura = document.querySelector("#resumo-leitura");
 const leituraVazia = document.querySelector("#leitura-vazia");
+const botaoLimparLeitura = document.querySelector("#limpar-leitura");
 
 function mostrarLeitura() {
     listaLeitura.replaceChildren();
 
     leituraVazia.hidden = leitura.length > 0;
+    botaoLimparLeitura.hidden = leitura.length === 0;
 
     const lidos = leitura.filter(l => l.lido).length;
     resumoLeitura.textContent = leitura.length === 0
@@ -294,11 +303,20 @@ function alternarLeitura(titulo) {
 
 // delegação: um ouvinte só para a lista toda
 listaLeitura.addEventListener("click", (evento) => {
-    const botao = evento.target.closest("button");
     const li = evento.target.closest("li");
-    if (!botao || !li) return;
+    if (!li) return;
 
     const i = Number(li.dataset.indice);
+    const botao = evento.target.closest("button");
+
+    // clique no título marca ou desmarca como lido
+    if (!botao) {
+        if (!evento.target.closest(".titulo-leitura")) return;
+        leitura[i].lido = !leitura[i].lido;
+        guardarLeitura();
+        return;
+    }
+
     const acao = botao.dataset.acao;
 
     if (acao === "lido") leitura[i].lido = !leitura[i].lido;
@@ -309,24 +327,37 @@ listaLeitura.addEventListener("click", (evento) => {
     guardarLeitura();
 });
 
+botaoLimparLeitura.addEventListener("click", () => {
+    leitura = [];
+    guardarLeitura();
+});
+
 // ─── 11 · inscrição ───
 const formulario = document.querySelector("#inscricao");
 const mensagem = document.querySelector("#mensagem");
 
 formulario.addEventListener("submit", (evento) => {
     evento.preventDefault();
-    const nomeInscrito = formulario.nome.value.trim();
-    const email = formulario.email.value.trim();
 
-    if (nomeInscrito === "" || !email.includes("@")) {
-        mensagem.textContent = "Preencha o nome e um e-mail válido.";
-        mensagem.className = "mensagem erro";
-        return;
-    }
+    const dados = new FormData(formulario);
+    const nomeInscrito = String(dados.get("nome")).trim();
+    const clube = dados.get("clube");
 
-    mensagem.textContent = `Obrigado, ${nomeInscrito}! Inscrição feita.`;
+    // só o primeiro nome no resumo
+    const primeiro = nomeInscrito.split(/\s+/)[0];
+
+    mensagem.textContent = `Obrigado, ${primeiro}! Inscrição no clube ${clube}.`;
     mensagem.className = "mensagem sucesso";
+
     formulario.reset();
+    formulario.elements.nome.focus();
+});
+
+// nome e apelido: a validação do HTML mostra a nossa mensagem
+formulario.elements.nome.addEventListener("input", (evento) => {
+    const partes = evento.target.value.trim().split(/\s+/);
+    const erro = partes.length < 2 ? "Escreve nome e apelido." : "";
+    evento.target.setCustomValidity(erro);
 });
 
 // ─── 12 · tema ───
@@ -523,7 +554,23 @@ window.addEventListener("storage", (evento) => {
     if (evento.key === null || evento.key === CHAVES.leitor) mostrarLeitor();
 });
 
-// ─── 18 · arranque ───
+// ─── 18 · progresso de leitura ───
+const rangeLido = document.querySelector("#lido");
+const barraProgresso = document.querySelector(".progresso");
+const percentagem = document.querySelector("#percentagem");
+
+rangeLido.addEventListener("input", () => {
+    const valor = Number(rangeLido.value);
+
+    // largura é valor calculado: vai no style
+    barraProgresso.style.width = `${valor}%`;
+    percentagem.textContent = `${valor}% lido`;
+
+    // a cor vem de uma classe, não do style
+    barraProgresso.classList.toggle("completo", valor === 100);
+});
+
+// ─── 19 · arranque ───
 function provarNaConsola() {
     console.log(`${catalogo.length} livros: ${contarDisponiveis(catalogo)} disponíveis`);
     console.log(`Mais antigo: ${maisAntigo(catalogo).titulo}`);

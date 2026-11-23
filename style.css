@@ -442,7 +442,8 @@ body.tema-escuro .botao-tema:hover {
 }
 
 #pesquisa:focus-visible,
-.formulario input:focus-visible {
+.formulario input:focus-visible,
+.formulario select:focus-visible {
   outline: 3px solid var(--cor-destaque);
   outline-offset: 2px;
 }
@@ -545,13 +546,21 @@ body.tema-escuro .botao-tema:hover {
   font-weight: bold;
 }
 
-.formulario input {
+.formulario input,
+.formulario select {
   padding: 0.6rem 0.9rem;
   font: inherit;
   color: var(--cor-texto);
   background: var(--cor-fundo);
   border: 1px solid var(--cor-borda);
   border-radius: 8px;
+}
+
+.formulario .caixa {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-weight: normal;
 }
 
 .formulario .botao {
@@ -762,4 +771,53 @@ body.tema-escuro .botao-tema:hover {
 .botao-mini:hover {
   color: var(--cor-principal);
   background: var(--cor-destaque-claro);
+}
+
+/* 12. Progresso de leitura
+   ------------------------------------------------------------ */
+#limpar-leitura {
+  margin-top: 1rem;
+}
+
+.progresso-caixa {
+  max-width: 320px;
+  margin-top: 1.5rem;
+}
+
+.progresso-caixa label {
+  display: block;
+  margin-bottom: 0.4rem;
+  font-size: 0.9rem;
+  font-weight: bold;
+}
+
+.progresso-caixa input[type="range"] {
+  width: 100%;
+  accent-color: var(--cor-destaque);
+}
+
+.progresso-barra {
+  height: 12px;
+  background: var(--cor-borda);
+  border-radius: 999px;
+  overflow: hidden;
+}
+
+.progresso {
+  display: block;
+  width: 0;
+  height: 100%;
+  background: var(--cor-principal);
+  transition: width 0.15s linear;
+}
+
+/* 100%: a cor vem da classe, não do style */
+.progresso.completo {
+  background: #2F7A5C;
+}
+
+.percentagem {
+  margin: 0.4rem 0 0;
+  font-size: 0.9rem;
+  color: var(--cor-destaque);
 }
